@@ -17,6 +17,10 @@ header {
   font-family: "Sanchez",helvetica,arial,sans-serif;
   margin-bottom:0.5em;
 }
+#footer {
+  margin-top:60px;
+  text-align: center;
+}
 
 #editor-parent {
   display:block;
@@ -43,6 +47,5 @@ header {
 #toolbar {
   background: rgb(57,​ 64,​ 70);
   color: rgb(215,​ 217,​ 218);
-  text-align:center;
   padding:1em;
 }
