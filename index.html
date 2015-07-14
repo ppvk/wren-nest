@@ -22,7 +22,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 
 
   <!-- Favicon
@@ -44,6 +44,9 @@
 
       <div class="nine columns" id="editor-parent">
 
+        <label for="url"></label>
+        <input class="u-full-width" placeholder="Gist" id="url" type="email" hidden>
+
         <div id="editor">IO.print("Hello, world!")
 
 class Wren {
@@ -63,9 +66,11 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
       </div>
 
       <div class="three columns" id="toolbar">
-        <button id="run">run</button>
+        <button class="u-full-width" id="run">run</button>
+        <button class="u-full-width" id="reset">reset</button>
         <br>
         <br>
+
         <ul>
         <a href="http://munificent.github.io/wren/">
           <li>Official Wren Site</li>
@@ -75,44 +80,20 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
         </a>
         <br>
         </ul>
+
       </div>
 
     </div>
     <div id="footer" class="row">Made by <a href="http://ppvk.github.io/">Paul VanKeuren</a> and <a href="https://github.com/ppvk/wren-nest">Friends</a>.</div>
   </div>
 
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="js/wren.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/ace.js" type="text/javascript" charset="utf-8" async></script>
+  <script src="main.js" type="text/javascript" charset="utf-8" async></script>
 
 <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-  <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/wren.js" type="text/javascript" charset="utf-8"></script>
-  <script>
-      // I'm a dart developer, not a JavaScript developer. :/
-
-      var editor = ace.edit("editor");
-      editor.setTheme("ace/theme/katzenmilch");
-      editor.getSession().setMode("ace/mode/dart");
-
-      var aceConsole = ace.edit("console");
-      aceConsole.setTheme("ace/theme/katzenmilch");
-      aceConsole.setReadOnly(true);
-      aceConsole.setShowPrintMargin(false);
-      aceConsole.setHighlightActiveLine(false);
-      aceConsole.renderer.setShowGutter(false);
-
-      var console = {};
-      console.log = function(text) {
-        aceConsole.setValue( aceConsole.getValue() + '' + text + '\n');
-        aceConsole.clearSelection();
-      }
-
-      document.querySelector('#run').onclick = function() {
-        newVM();
-        aceConsole.setValue('');
-        interpret("wren-nest", editor.getValue());
-        freeVM();
-      }
-  </script>
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
