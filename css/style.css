@@ -1,0 +1,50 @@
+body, html {
+  height:100vh;
+  width:100vw;
+  padding:none;
+  margin:none;
+
+}
+
+header {
+  position:relative;
+  height:50px;
+  line-height:50px;
+  background: rgb(57, 64, 70);
+  color: rgb(215, 217,218);
+  padding-left:1em;
+  font-size: 20pt;
+  font-family: "Sanchez",helvetica,arial,sans-serif;
+  margin-bottom:0.5em;
+}
+
+#editor-parent {
+  position:relative;
+  height:calc(100vh - 200px);
+}
+#editor {
+  border-radius: 5px;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:150px;
+  right:0;
+  font-family: 'Source Code Pro';
+}
+#console {
+  border-radius: 5px;
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  height:140px;
+  font-family: 'Source Code Pro';
+}
+
+
+#toolbar {
+  background: rgb(57,​ 64,​ 70);
+  color: rgb(215,​ 217,​ 218);
+  text-align:center;
+  padding:1em;
+}
