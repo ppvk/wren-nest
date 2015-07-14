@@ -1,13 +1,24 @@
 // I'm a dart developer, not a JavaScript developer. :/
 
+
+// hide warning if user has already seen it.
+if (localStorage['close-warning'] == 'true') {
+  document.querySelector('#warning').style.display = 'none';
+}
+document.querySelector('#warning .close-button').onclick = function() {
+  localStorage['close-warning'] = 'true';
+  document.querySelector('#warning').style.display = 'none';
+}
+
+
 // Editor Setup
 var editor = ace.edit("editor");
-editor.setTheme("ace/theme/katzenmilch");
+editor.setTheme("ace/theme/wren");
 editor.getSession().setMode("ace/mode/dart");
 
 // Fake Console Setup
 var aceConsole = ace.edit("console");
-aceConsole.setTheme("ace/theme/katzenmilch");
+aceConsole.setTheme("ace/theme/wren");
 aceConsole.setReadOnly(true);
 aceConsole.setShowPrintMargin(false);
 aceConsole.setHighlightActiveLine(false);
@@ -36,14 +47,31 @@ var gistID = window.location.href.split('?=')[1];
 if (gistID != undefined) {
   document.querySelector('#url').value = 'https://gist.github.com/' + gistID;
 
-  // TODO do githup api stuff here.
+  // TODO do github api stuff here.
 
+  getGists(gistID);
 }
+
+function getGists(id) {
+  var getUrl = 'https://api.github.com/gists/' + id;
+  var get = new XMLHttpRequest();
+      get.open( "GET", getUrl, true );
+      get.send();
+  get.onreadystatechange = function() {
+    if (get.readyState == 4 && get.status == 200) {
+      var gists = JSON.parse(get.responseText);
+      editor.setValue(gists['files']['main.wren']['content']);
+      editor.clearSelection();
+    }
+  }
+}
+
+
+
 
 // update the gist
 document.querySelector('#pull-gist').onclick = function() {
   var urlTail = document.querySelector('#url').value.split('https://gist.github.com/')[1]
-
   // not a gist
   if (urlTail == undefined) {
     console.log('Invalid Gist url, did you forget the "https://"?');

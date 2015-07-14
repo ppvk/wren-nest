@@ -40,13 +40,17 @@
     </div>
   </header>
   <div class="container">
-    <div class="row">
+    <div id="warning" class="u-full-width">
+      Attention: Use caution when loading scripts written by others, wrenjs is capable of running ANY JavaScript code.
+      <div class="close-button">x</div>
+    </div>
 
-      <div class="nine columns" id="editor-parent">
+    <div class="row">
+        <div class="nine columns" id="editor-parent">
 
         <label for="url"></label>
-        <input class="u-full-width" placeholder="Gist" id="url" type="text" hidden>
-        <button id="pull-gist" hidden>pull</button>
+        <input class="u-full-width" placeholder="Gist" id="url" type="text">
+        <button id="pull-gist">pull</button>
 
         <div id="editor">IO.print("Hello, world!")
 
