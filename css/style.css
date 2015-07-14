@@ -24,21 +24,17 @@ header {
 }
 #editor {
   border-radius: 5px;
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
+  width:100%;
   height:400px;
   font-family: 'Source Code Pro';
+  margin-bottom:1em;
+  resize:vertical;
 }
 #console {
   border-radius: 5px;
-  position:absolute;
-  left:0;
-  top:420px;
-  right:0;
   height:140px;
   font-family: 'Source Code Pro';
+  resize:vertical;
 }
 
 
