@@ -27,15 +27,15 @@ header {
   position:absolute;
   top:0;
   left:0;
-  bottom:150px;
   right:0;
+  height:400px;
   font-family: 'Source Code Pro';
 }
 #console {
   border-radius: 5px;
   position:absolute;
   left:0;
-  bottom:0;
+  top:420px;
   right:0;
   height:140px;
   font-family: 'Source Code Pro';
