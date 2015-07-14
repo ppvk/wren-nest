@@ -16,7 +16,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Sanchez|Source+Code+Pro' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Sanchez|Source+Code+Pro' rel='stylesheet' type='text/css'>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -45,7 +45,8 @@
       <div class="nine columns" id="editor-parent">
 
         <label for="url"></label>
-        <input class="u-full-width" placeholder="Gist" id="url" type="email" hidden>
+        <input class="u-full-width" placeholder="Gist" id="url" type="text" hidden>
+        <button id="pull-gist" hidden>pull</button>
 
         <div id="editor">IO.print("Hello, world!")
 
@@ -66,8 +67,8 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
       </div>
 
       <div class="three columns" id="toolbar">
-        <button class="u-full-width" id="run">run</button>
-        <button class="u-full-width" id="reset">reset</button>
+        <button title="Run on the current VM" class="u-full-width" id="run">run</button>
+        <button title="Reset the VM" class="u-full-width" id="reset">reset</button>
         <br>
         <br>
 
@@ -90,7 +91,7 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/wren.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/ace.js" type="text/javascript" charset="utf-8" async></script>
+  <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="main.js" type="text/javascript" charset="utf-8" async></script>
 
 <!-- End Document

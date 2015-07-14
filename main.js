@@ -34,16 +34,30 @@ document.querySelector('#reset').onclick = function() {
 // Pull in URL
 var gistID = window.location.href.split('?=')[1];
 if (gistID != undefined) {
-  document.querySelector('#url').value = 'https://gist.github.com/ppvk/' + gistID;
+  document.querySelector('#url').value = 'https://gist.github.com/' + gistID;
+
+  // TODO do githup api stuff here.
+
 }
 
-document.querySelector('#url').onchange = function() {
+// update the gist
+document.querySelector('#pull-gist').onclick = function() {
   var urlTail = document.querySelector('#url').value.split('https://gist.github.com/')[1]
+
+  // not a gist
   if (urlTail == undefined) {
     console.log('Invalid Gist url, did you forget the "https://"?');
   }
-  else {
-    urlTail.split('/')[1];
+  // gist without username
+  else if (urlTail.split('/')[1] == undefined) {
+    gistID = urlTail;
     console.log('gistID changed to:' + gistID);
+    window.location.href = window.location.href.substring(0, window.location.href.indexOf('?=')) + '?=' + gistID;
+  }
+  // gist with username
+  else {
+    gistID = urlTail.split('/')[1];
+    console.log('gistID changed to:' + gistID);
+    window.location.href = window.location.href.substring(0, window.location.href.indexOf('?=')) + '?=' + gistID;
   }
 }
