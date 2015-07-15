@@ -89,14 +89,34 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
       </div>
 
     </div>
-    <div id="footer" class="row">Made by <a href="http://ppvk.github.io/">Paul VanKeuren</a> and <a href="https://github.com/ppvk/wren-nest">Friends</a>.</div>
+    <div id="footer" class="row">Made by <a href="http://ppvk.github.io/">Paul VanKeuren</a> and <a href="https://github.com/ppvk/wren-nest">friends</a>.</div>
   </div>
 
-<!-- Scripts
+<!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/wren.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="main.js" type="text/javascript" charset="utf-8" async></script>
+  <script src="packages/transmit/transmit.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>
+    // allows us to send all 'console.log' strings to dart.
+    var console = {};
+    console.log = function(text) {
+      transmit('console', text);
+    }
+
+    // allows us to import modules
+    var module = {}
+    function setModule(key, value) {
+      module[key] = value;
+    }
+  </script>
+
+<!-- Dartlang
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="application/dart" src="main.dart"></script>
+  <script type="text/javascript" src="packages/browser/dart.js"></script>
+
 
 <!-- End Document
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
