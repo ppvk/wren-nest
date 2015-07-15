@@ -29,7 +29,6 @@ console.log = function(text) {
   aceConsole.clearSelection();
 }
 
-
 // Listeners
 newVM();
 document.querySelector('#run').onclick = function() {

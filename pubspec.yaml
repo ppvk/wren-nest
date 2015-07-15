@@ -1,0 +1,8 @@
+name: nest
+dependencies:
+  browser: any
+  ace: "^0.6.2+3.4.15"
+  transmit:
+    git:
+      url: https://github.com/pokegama/transmit.git
+      ref: master
