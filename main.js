@@ -52,6 +52,9 @@ if (gistID != undefined) {
   getGists(gistID);
 }
 
+
+var module = new Map();
+
 function getGists(id) {
   var getUrl = 'https://api.github.com/gists/' + id;
   var get = new XMLHttpRequest();
@@ -61,7 +64,12 @@ function getGists(id) {
     if (get.readyState == 4 && get.status == 200) {
       var gists = JSON.parse(get.responseText);
       editor.setValue(gists['files']['main.wren']['content']);
+      for (var file in gists.files) {
+          var mod = file.split('.')[0];
+          module[mod] = gists.files[file].content;
+      }
       editor.clearSelection();
+      editor.navigateTo(0,0);
     }
   }
 }
