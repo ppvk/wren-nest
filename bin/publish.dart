@@ -10,13 +10,25 @@ main() async {
   copyDirectory(gitDir, workingDirectory.path + '/.git');
 
   print('Checking out gh-pages branch..');
-  await Process.run('git', ['checkout', '--orphan', 'gh-pages'], workingDirectory: workingDirectory.path);
+  await Process.run('git', ['checkout', 'gh-pages'], workingDirectory: workingDirectory.path)
+  .then((result) {
+    print(result.stdout);
+    print(result.stderr);
+  });
 
   print('Checking out gh-pages branch..');
-  await Process.run('git', ['pull', 'origin', 'gh-pages'], workingDirectory: workingDirectory.path);
+  await Process.run('git', ['pull', 'origin', 'gh-pages'], workingDirectory: workingDirectory.path)
+  .then((result) {
+    print(result.stdout);
+    print(result.stderr);
+  });
 
   print('Clearing old files..');
-  await Process.run('git', ['rm', '-rf', '.'], workingDirectory: workingDirectory.path);
+  await Process.run('git', ['rm', '-rf', '.'], workingDirectory: workingDirectory.path)
+  .then((result) {
+    print(result.stdout);
+    print(result.stderr);
+  });
 
   print('Running pub get..');
   await Process.run('pub', ['get'])
