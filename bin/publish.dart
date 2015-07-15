@@ -1,5 +1,4 @@
 import 'dart:io';
-
 main() async {
   Directory workingDirectory = await new Directory('.').createTemp();
   Directory gitDir = new Directory('.git');
