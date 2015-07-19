@@ -37,9 +37,10 @@ class Editor {
       ..session.mode = new ace.Mode.named(ace.Mode.DART);
 
     // JS proxies
-    JsFunction interpret =  context['interpret'];
-    JsFunction newVM =  context['newVM'];
-    JsFunction freeVM =  context['freeVM'];
+    JsObject wren = context['Wren'];
+    JsFunction interpret =  wren['interpret'];
+    JsFunction newVM =  wren['newVM'];
+    JsFunction freeVM =  wren['freeVM'];
 
     // Create starting VM
     newVM.apply([]);
