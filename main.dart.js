@@ -4117,7 +4117,7 @@ return}throw"Unable to print message: "+String(a)}}],["","",,K,{
 "^":"",
 U:{
 "^":"a;Q,a",
-Y:function(){var z,y,x,w,v,u,t,s,r,q
+Y:function(){var z,y,x,w,v,u,t,s,r,q,p
 if($.T==null)$.T=C.L
 z=window.location.href.split("?=")
 if(z.length>1){y=document.querySelector("#url")
@@ -4141,14 +4141,16 @@ x=B.V("ace/mode/dart")
 t=x.Q
 u.V7("setMode",[t!=null?t:x.b])
 this.Q=v
-s=J.S(w,"interpret")
-r=J.S(w,"newVM")
-q=J.S(w,"freeVM")
-r.PO([])
+s=J.S(w,"Wren")
+x=J.M(s)
+r=x.p(s,"interpret")
+q=x.p(s,"newVM")
+p=x.p(s,"freeVM")
+q.PO([])
 x=J.Vg(document.querySelector("#run"))
-H.J(new W.xC(0,x.Q,x.a,W.VF(new K.P8(this,s)),x.b),[H.Kp(x,0)]).DN()
+H.J(new W.xC(0,x.Q,x.a,W.VF(new K.P8(this,r)),x.b),[H.Kp(x,0)]).DN()
 x=J.Vg(document.querySelector("#reset"))
-H.J(new W.xC(0,x.Q,x.a,W.VF(new K.nJ(this,r,q)),x.b),[H.Kp(x,0)]).DN()
+H.J(new W.xC(0,x.Q,x.a,W.VF(new K.nJ(this,q,p)),x.b),[H.Kp(x,0)]).DN()
 x=J.Vg(document.querySelector("#pull-gist"))
 H.J(new W.xC(0,x.Q,x.a,W.VF(new K.bf()),x.b),[H.Kp(x,0)]).DN()},
 static:{Q:function(){var z=new K.U(null,R.Z())

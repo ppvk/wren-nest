@@ -3,6 +3,7 @@ body, html {
   width:100vw;
   padding:none;
   margin:none;
+  font-family: "Lato", helvetica,arial,sans-serif;
 }
 
 header {
@@ -59,7 +60,7 @@ header {
   display:block;
   width:100%;
   height:400px;
-  font-family: 'Source Code Pro';
+  font-family: 'Source Code Pro', monospace;
   margin-bottom:1em;
   resize:vertical;
   line-height: 18px;
@@ -74,7 +75,7 @@ header {
 #console {
   display:block;
   height:140px;
-  font-family: 'Source Code Pro';
+  font-family: 'Source Code Pro', monospace;
   margin-bottom:1em;
   resize:vertical;
   line-height: 18px;

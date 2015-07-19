@@ -15,8 +15,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Sanchez|Source+Code+Pro' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Sanchez' rel='stylesheet' type='text/css'>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -76,15 +75,15 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
         <br>
         <br>
 
-        <ul>
         <a href="http://munificent.github.io/wren/">
-          <li>Official Wren Site</li>
+          Official Wren Site
         </a>
-        <a href="https://groups.google.com/forum/#!forum/wren-lang">
-          <li>Wren Mailing List</li>
-        </a>
+
         <br>
-        </ul>
+
+        <a href="https://groups.google.com/forum/#!forum/wren-lang">
+          Wren Mailing List
+        </a>
 
       </div>
 
@@ -103,10 +102,10 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
     var console = {};
     console.log = function(text) {
       transmit('console', text);
-    }
+    };
 
     // allows us to import modules
-    var module = {}
+    var module = {};
     function setModule(key, value) {
       module[key] = value;
     }
