@@ -1,25 +1,39 @@
 body, html {
   height:100vh;
   width:100vw;
-  padding:none;
-  margin:none;
+  padding:0;
+  margin:0;
   font-family: "Lato", helvetica,arial,sans-serif;
 }
 
 header {
   position:relative;
   height:50px;
-  line-height:50px;
+  line-height:45px;
   background: rgb(57, 64, 70);
   color: rgb(215, 217,218);
   padding-left:1em;
   font-size: 20pt;
   font-family: "Sanchez",helvetica,arial,sans-serif;
   margin-bottom:0.5em;
+  text-shadow: rgb(20, 26, 31) 0 1px 1px;
 }
+header a {
+  margin:0 0.5em;
+  padding: 0;
+  font: 500 12px "Lato", helvetica, arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9ca0a3;
+  line-height: 50px;
+}
+
 #footer {
-  margin-top:60px;
   text-align: center;
+  opacity:0.8;
+}
+#footer:hover {
+  opacity:1;
 }
 
 #warning {
@@ -27,41 +41,34 @@ header {
   background:#e6a21a;
   border-radius:3px;
   opacity:0.8;
-}
-.close-button {
-  display: inline-block;
-  height:1.25em;
-  background:rgba(255,255,255,0.5);
-  text-align:center;
-  border-radius:50%;
-  width:1.3em;
-  margin:0.2em;
-  line-height:1.1em;
-  position: absolute;
-  right:0;
-  top:0;
-  cursor:pointer;
+  font-size:14px;
 }
 
 #url {
   width:calc(100% - 60px);
+  margin-bottom:-1.5em;
 }
+
 #pull-gist {
   width:55px;
-  padding: 0;
-  margin-top:5px;
+  padding: 1px;
 }
 
 #editor-parent {
   display:block;
   position:relative;
+  margin:0;
+  padding:1px 4px 2px 2px;
+  border-radius:0.25em;
+  overflow:hidden;
+  background: rgba(33, 94, 133, 0.3);
 }
 #editor {
   display:block;
   width:100%;
   height:400px;
   font-family: 'Source Code Pro', monospace;
-  margin-bottom:1em;
+  margin-bottom:2px;
   resize:vertical;
   line-height: 18px;
   font-size: 11px;
@@ -70,13 +77,28 @@ header {
   border-image: none;
   border-style: solid;
   border-width: 1px;
+}
+
+#editor-splash {
+  border-radius:0.25em;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background: rgb(57, 64, 70);
+  color: rgb(215, 217,218);
+  z-index: 99;
+  line-height: 650px;
+  text-align:center;
+  transition:opacity 1s;
 }
 
 #console {
   display:block;
   height:140px;
+  width:100%;
   font-family: 'Source Code Pro', monospace;
-  margin-bottom:1em;
   resize:vertical;
   line-height: 18px;
   font-size: 11px;
@@ -87,9 +109,75 @@ header {
   border-width: 1px;
 }
 
-
 #toolbar {
-  background: rgb(57,​ 64,​ 70);
-  color: rgb(215,​ 217,​ 218);
-  padding:1em;
+  padding:0;
+  padding-top: 1em;
+  margin:0.5em;
+}
+#toolbar button {
+  width:55px;
+  padding: 1px;
+}
+
+.tab {
+  display:inline-block;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  border-color: #f0f3f5 #f0f3f5 #e0e7eb;
+  border-image: none;
+  border-style: solid;
+  border-width: 1px;
+  padding:0.25em 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: -1em;
+  cursor:pointer;
+  color: rgb(82, 102, 122);
+  background: rgba(249, 250, 251, 0.9);
+  border-radius:0.25em;
+}
+.tab .label.editing{
+  background: #fff;
+  color:blue;
+}
+.tab.open {
+  background: rgb(249, 250, 251);
+}
+
+button, input[type='text'] {
+  border-color: #f0f3f5 #f0f3f5 #e0e7eb;
+  border-image: none;
+  border-style: solid;
+  border-width: 1px;
+  cursor:pointer;
+  color: rgb(82, 102, 122);
+  background: rgb(249, 250, 251);
+}
+
+.spin {
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 4000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 4000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
