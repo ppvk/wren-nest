@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>the Wren nest</title>
+  <title>the wren nest</title>
   <meta name="description" content="a place to run wren code">
   <meta name="author" content="Paul VanKeuren">
 
@@ -16,6 +16,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href='https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Sanchez' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/octicons/octicons.css">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -35,21 +36,35 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <header>
     <div class="container">
-      Wren Nest
+      wren's nest
+
+      <a href="http://munificent.github.io/wren/" class="u-pull-right">
+        Official Wren Site
+      </a>
+      <a href="https://groups.google.com/forum/#!forum/wren-lang" class="u-pull-right">
+        Wren Mailing List
+      </a>
     </div>
   </header>
   <div class="container">
     <div id="warning" class="u-full-width">
-      Attention: Use caution when loading scripts written by others, wrenjs is capable of running ANY JavaScript code.
-      <div class="close-button">x</div>
+      Use caution when loading scripts written by others, wrenjs is capable of running ANY JavaScript code.
     </div>
 
     <div class="row">
-        <div class="nine columns" id="editor-parent">
-
+      <div class="twelve columns">
         <label for="url"></label>
         <input class="u-full-width" placeholder="Gist" id="url" type="text">
         <button id="pull-gist">pull</button>
+      </div>
+
+      <div class="eleven columns" id="editor-parent">
+        <div class="u-full-width" id="tab-holder">
+          <div class="tab" id="tab-main">
+            <span class="octicon octicon-repo"></span> main
+          </div>
+        </div>
+
 
         <div id="editor">IO.print("Hello, world!")
 
@@ -59,37 +74,33 @@ class Wren {
   }
 }
 
-var adjectives = new Fiber {
+var adjectives = Fiber.new {
   ["small", "clean", "fast"].each {|word| Fiber.yield(word) }
 }
 
 while (!adjectives.isDone) IO.print(adjectives.call())</div>
-
-      <div id="console"></div>
-
+        <div id="console"></div>
       </div>
 
-      <div class="three columns" id="toolbar">
-        <button title="Run on the current VM" class="u-full-width" id="run">run</button>
-        <button title="Reset the VM" class="u-full-width" id="reset">reset</button>
-        <br>
-        <br>
+      <div class="one column" id="toolbar">
+        <button title="Run on the current VM" class="u-full-width" id="run">
+          run
+        </button>
+        <button title="Reset the VM" class="u-full-width" id="reset">
+          reset
+        </button>
 
-        <a href="http://munificent.github.io/wren/">
-          Official Wren Site
-        </a>
-
-        <br>
-
-        <a href="https://groups.google.com/forum/#!forum/wren-lang">
-          Wren Mailing List
-        </a>
-
+        <button title="Create a permalink" class="u-full-width" id="share" hidden>
+          share
+        </button>
       </div>
 
+      <div id="editor-splash">
+        <span class="mega-octicon octicon-gear spin"></span>
+      </div>
     </div>
-    <div id="footer" class="row">Made by <a href="http://ppvk.github.io/">Paul VanKeuren</a> and <a href="https://github.com/ppvk/wren-nest">friends</a>.</div>
   </div>
+  <div id="footer" class="row">Made by <a href="http://ppvk.github.io/">Paul VanKeuren</a> and <a href="https://github.com/ppvk/wren-nest">friends</a>.</div>
 
 <!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

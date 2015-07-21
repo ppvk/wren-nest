@@ -11,7 +11,7 @@ pullGist(String id) async {
   for (String filename in gist['files'].keys) {
     String name = filename.split('.')[0];
     String content = await HttpRequest.getString(gist['files'][filename]['raw_url']);
-    module[name] = new Module._(name, content);
+    module[name] = new Module(name, content);
   }
 }
 
@@ -24,7 +24,7 @@ class Module {
   String _name;
   String _value;
 
-  Module._(final this._name, String value) {
+  Module(this._name, String value) {
     content = value;
   }
 
@@ -32,5 +32,11 @@ class Module {
   set content(String value) {
     _value = value;
     context['setModule'].apply([_name, content]);
+  }
+
+  rename(String newName) {
+    context['setModule'].apply([newName, content]);
+    context['setModule'].apply([_name, null]);
+    this._name = newName;
   }
 }
