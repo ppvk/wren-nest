@@ -3,11 +3,15 @@ library editor;
 import 'dart:html' as html;
 import 'dart:js';
 import 'dart:async';
+import 'dart:math';
 
 import 'package:ace/ace.dart' as ace;
 import 'package:ace/proxy.dart';
 import 'package:nest/console.dart';
 import 'package:nest/gist.dart';
+
+Random R = new Random();
+
 
 class Editor {
   ace.Editor _editor;
@@ -53,6 +57,7 @@ class Editor {
     } else {
       module['main'] = new Module('main', '');
       saveModule();
+      tabs.addTab('main');
       tabs.activateTab('main');
     }
 
@@ -106,7 +111,22 @@ class TabBar {
   Editor editor;
   html.Element tabHolder = html.querySelector('#tab-holder');
 
-  TabBar(this.editor);
+  TabBar(this.editor) {
+    html.Element newTabButton = tabHolder.querySelector('#new-tab');
+
+    newTabButton.onClick.listen((_) {
+      String name = rollName();
+      module[name] = new Module('name', '// $name.wren');
+      addTab(name);
+    });
+  }
+
+  String rollName() {
+    String name = 'f' + R.nextInt(1024).toString();
+    if (tabHolder.querySelector('#tab-$name') != null)
+      return rollName();
+    return name;
+  }
 
   addTab(String name) {
     if (tabHolder.querySelector('#tab-$name') != null) {
