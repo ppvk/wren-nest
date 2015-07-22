@@ -2,6 +2,7 @@ library gist;
 import 'dart:html';
 import 'dart:js';
 import 'dart:convert';
+import 'package:transmit/transmit.dart';
 
 /// Takes all files in the gist and makes them available as Modules to the wren VM.
 pullGist(String id) async {
@@ -13,6 +14,31 @@ pullGist(String id) async {
     String content = await HttpRequest.getString(gist['files'][filename]['raw_url']);
     module[name] = new Module(name, content);
   }
+}
+
+createGist() async {
+  Map post = {
+    "description": "Wren Snippet : Created at http://ppvk.github.io/wren-nest",
+    "public": true,
+    "files": {
+    }
+  };
+  for (Module mod in module.values) {
+    post['files'][mod._name + '.wren'] = {
+      'content': mod.content
+    };
+  }
+
+  HttpRequest request = new HttpRequest();
+  await request.open('POST', 'https://api.github.com/gists');
+  request.onLoad.first.then((event) {
+    Map response = JSON.decode(event.target.responseText);
+    String permalink = window.location.href.split('?=').first + '?=' + response['id'];
+    transmit('console-clear');
+    transmit('console',
+    'Permalink to current snapshot:\n========================\n$permalink\n========================');
+  });
+  request.send(JSON.encode(post));
 }
 
 

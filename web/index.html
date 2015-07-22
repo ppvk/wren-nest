@@ -51,7 +51,7 @@
         <button id="pull-gist">pull</button>
       </div>
 
-      <div class="eleven columns" id="editor-parent">
+      <div class="twelve columns" id="editor-parent">
         <div id="tab-holder">
           <div class="tab" id="tab-main">
             <span class="octicon octicon-repo"></span><span class="label">main</span>
@@ -75,20 +75,20 @@ var adjectives = Fiber.new {
 }
 
 while (!adjectives.isDone) IO.print(adjectives.call())</div>
+
+        <div id="toolbar">
+          <span title="Run on the current VM" class="tool octicon octicon-playback-play" id="run">
+          </span>
+
+          <span title="Reset the VM" class="tool octicon octicon-sync" id="reset">
+          </span>
+
+          <span title="Create a permalink" class="tool octicon octicon-link u-pull-right" id="share" >
+          </span>
+
+        </div>
+
         <div id="console"></div>
-      </div>
-
-      <div class="one column" id="toolbar">
-        <button title="Run on the current VM" class="u-full-width" id="run">
-          run
-        </button>
-        <button title="Reset the VM" class="u-full-width" id="reset">
-          reset
-        </button>
-
-        <button title="Create a permalink" class="u-full-width" id="share" hidden>
-          share
-        </button>
       </div>
 
       <div id="editor-splash">

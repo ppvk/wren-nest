@@ -22,6 +22,13 @@ class Console {
       ..highlightActiveLine = false
       ..renderer.showGutter = false;
 
+    new Service(['console-clear'], (text) {
+      _console
+        ..setValue('')
+        ..clearSelection()
+        ..gotoPageDown();
+    });
+
     new Service(['console'], (text) {
       _console
         ..setValue( _console.value + '' + text + '\n')

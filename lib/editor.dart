@@ -82,6 +82,10 @@ class Editor {
       newVM.apply([]);
     });
 
+    html.querySelector('#share').onClick.listen((_) {
+      createGist();
+    });
+
     html.querySelector('#pull-gist').onClick.listen((_) {
       html.InputElement urlBar = html.querySelector('#url');
       var url = urlBar.value.split('https://gist.github.com/');
@@ -94,11 +98,12 @@ class Editor {
         html.window.location.href = html.window.location.href.split('?=').first + '?=' + url[1].split('/').last;
       }
     });
+
     // editor configured, hide splash screen
     html.Element splash = html.querySelector('#editor-splash');
 
     splash.style.opacity = '0.0';
-    new Timer(new Duration(seconds:1), () => splash.style.display = 'none');
+    new Timer(new Duration(milliseconds:250), () => splash.style.display = 'none');
   }
 
   saveModule() {
@@ -116,7 +121,7 @@ class TabBar {
 
     newTabButton.onClick.listen((_) {
       String name = rollName();
-      module[name] = new Module('name', '// $name.wren');
+      module[name] = new Module(name, '// $name.wren');
       addTab(name);
     });
   }
@@ -149,8 +154,19 @@ class TabBar {
             ..className = 'label'
             ..text = name
       )
+        ..append(
+          new html.SpanElement()
+            ..className = 'octicon octicon-x'
+      )
         ..onClick.listen((_) => activateTab(name))
         ..onDoubleClick.listen((_) => renameTab(name));
+
+      tab.querySelector('.octicon-x').onClick.listen((_) {
+        module[name].rename(null);
+        if (opened == name)
+          activateTab('main');
+        tab.remove();
+      });
 
       tabHolder.append(tab);
     }
@@ -158,6 +174,9 @@ class TabBar {
 
   String opened = 'main';
   activateTab(String name) {
+    if (tabHolder.querySelector('#tab-$name') == null)
+      return;
+
     opened = name;
     tabHolder.querySelectorAll('*').classes.remove('open');
     tabHolder.querySelector('#tab-$name').classes.add('open');
