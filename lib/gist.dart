@@ -24,9 +24,11 @@ createGist() async {
     }
   };
   for (Module mod in module.values) {
-    post['files'][mod._name + '.wren'] = {
-      'content': mod.content
-    };
+    if (mod._name != null) {
+      post['files'][mod._name + '.wren'] = {
+        'content': mod.content
+      };
+    }
   }
 
   HttpRequest request = new HttpRequest();
