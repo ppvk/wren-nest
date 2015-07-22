@@ -4891,7 +4891,8 @@ Cu:function(){var z=0,y=new P.Zh(),x=1,w,v,u,t,s
 function Cu(a,b){if(a===1){w=b
 z=x}while(true)switch(z){case 0:v=P.Td(["description","Wren Snippet : Created at http://ppvk.github.io/wren-nest","public",!0,"files",P.u5()])
 for(u=$.Q3(),u=u.gUQ(u),u=H.J(new H.MH(null,J.Nx(u.Q),u.a),[H.Kp(u,0),H.Kp(u,1)]);u.D();){t=u.Q
-J.C7(v.p(0,"files"),J.WB(t.gEO(),".wren"),P.Td(["content",J.nX(t)]))}s=new XMLHttpRequest()
+if(t.gEO()!=null)J.C7(v.p(0,"files"),J.WB(t.gEO(),".wren"),P.Td(["content",J.nX(t)]))
+else ;}s=new XMLHttpRequest()
 z=2
 return H.AZ(C.Dt.EP(s,"POST","https://api.github.com/gists"),Cu,y)
 case 2:u=H.J(new W.RO(s,"load",!1),[null])
