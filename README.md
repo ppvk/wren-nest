@@ -8,8 +8,8 @@ Documentation for the JS module can be found [here](https://github.com/ppvk/wren
 1. Runs wren in the browser
 2. Imports Gists from GitHub, treating 'main.wren' as an entrypoint
 3. Modules, can be 'import'ed from other files in the Gist
+4. Saves to anonymous Gists
 
 ## Planned Features
-1. Saving to anonymous Gists
-2. Importing other Gists as Modules
-3. Fun modules for drawing graphs or adding UI components
+1. Importing other Gists as Modules
+2. Fun modules for drawing graphs or adding UI components
