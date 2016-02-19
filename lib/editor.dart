@@ -12,13 +12,17 @@ import 'package:nest/gist.dart';
 
 Random R = new Random();
 
-
 class Editor {
   ace.Editor _editor;
 
   Console console = new Console();
   TabBar tabs;
   String get value => _editor.value;
+
+  //static JsObject wren = context['WrenVM'];
+  //static JsObject vm = new JsObject(wren, [true]);
+  //JsFunction interpret =  vm['interpret'];
+  //JsFunction freeVM =  vm['free'];
 
   Editor() {
     tabs = new TabBar(this);
@@ -30,12 +34,6 @@ class Editor {
     _editor = ace.edit(html.querySelector("#editor"))
       ..theme = new ace.Theme('ace/theme/wren')
       ..session.mode = new ace.Mode.named(ace.Mode.DART);
-
-    // JS proxies
-    JsObject wren = context['Wren'];
-    JsFunction interpret =  wren['interpret'];
-    JsFunction newVM =  wren['newVM'];
-    JsFunction freeVM =  wren['freeVM'];
 
     // Check the url to see if we are loading a Gist
     var gistID = html.window.location.href.split('?=');
@@ -61,9 +59,6 @@ class Editor {
       tabs.activateTab('main');
     }
 
-    // Create starting VM
-    newVM.apply([]);
-
     // Controls //
     // Autosaving
     html.querySelector("#editor").onKeyUp.listen((_) {
@@ -72,14 +67,14 @@ class Editor {
 
     // Run main.wren
     html.querySelector('#run').onClick.listen((_) {
-      interpret.apply(['wren-nest', module['main'].content]);
+      JsObject vm = context['vm'];
+      vm.callMethod("interpret", [module['main'].content]);
     });
 
     // Reset VM and console
     html.querySelector('#reset').onClick.listen((_) {
+      context['refreshVM'].apply([]);
       console.clear();
-      freeVM.apply([]);
-      newVM.apply([]);
     });
 
     html.querySelector('#share').onClick.listen((_) {

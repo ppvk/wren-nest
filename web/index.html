@@ -62,11 +62,11 @@
         </div>
 
 
-        <div id="editor">IO.print("Hello, world!")
+        <div id="editor">System.print("Hello, world!")
 
 class Wren {
   flyTo(city) {
-    IO.print("Flying to ", city)
+    System.print("Flying to ", city)
   }
 }
 
@@ -74,7 +74,7 @@ var adjectives = Fiber.new {
   ["small", "clean", "fast"].each {|word| Fiber.yield(word) }
 }
 
-while (!adjectives.isDone) IO.print(adjectives.call())</div>
+while (!adjectives.isDone) System.print(adjectives.call())</div>
 
         <div id="toolbar">
           <span title="Run on the current VM" class="tool octicon octicon-playback-play" id="run">
@@ -114,16 +114,29 @@ while (!adjectives.isDone) IO.print(adjectives.call())</div>
   <script src="packages/transmit/transmit.js" type="text/javascript" charset="utf-8"></script>
 
   <script>
-    // allows us to send all 'console.log' strings to dart.
     var console = {};
     console.log = function(text) {
       transmit('console', text);
     };
 
     // allows us to import modules
-    var module = {};
     function setModule(key, value) {
-      module[key] = value;
+      WrenVM.module[key] = value;
+    };
+
+    WrenVM.loadPageModules();
+
+    vm = new WrenVM;
+    vm.writeFn = function(string) {
+      transmit("console" , string);
+    }
+
+    var refreshVM = function() {
+      vm.freeVM();
+      vm = new WrenVM;
+      vm.writeFn = function(string) {
+        transmit("console" , string);
+      }
     }
   </script>
 
