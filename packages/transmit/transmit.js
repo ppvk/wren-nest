@@ -5,3 +5,17 @@ function transmit(type, content) {
     document.dispatchEvent(event);
 }
 
+var Service = function(channels, callback) {
+  this.channels = channels;
+  this.callback = callback;
+  this.enabled = true;
+  
+  var self = this;
+  channels.forEach( function(channel) {
+    document.addEventListener('PUMP_' + channel.toString(), function(event) {
+      if (self.enabled) {
+        self.callback(event.detail);
+      }
+    });
+  });
+}
