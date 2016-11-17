@@ -119,17 +119,23 @@ while (!adjectives.isDone) System.print(adjectives.call())</div>
       transmit('console', text);
     };
 
+    var MODULES = {};
     // allows us to import modules
     function setModule(key, value) {
-      WrenVM.module[key] = value;
+      MODULES[key] = value;
     };
 
-    WrenVM.loadPageModules();
-
     vm = new WrenVM;
+
+    // Overrides the default 'writeFn', printing to the body instead of the console.
     vm.writeFn = function(string) {
       transmit("console" , string);
     }
+
+    // Overrides the 'loadModuleFn' so that the VM looks for modules in the MODULES object.
+    vm.loadModuleFn = function(module) {
+        return MODULES[module];
+    };
 
     var refreshVM = function() {
       vm.freeVM();
