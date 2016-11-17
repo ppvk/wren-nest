@@ -19,11 +19,6 @@ class Editor {
   TabBar tabs;
   String get value => _editor.value;
 
-  //static JsObject wren = context['WrenVM'];
-  //static JsObject vm = new JsObject(wren, [true]);
-  //JsFunction interpret =  vm['interpret'];
-  //JsFunction freeVM =  vm['free'];
-
   Editor() {
     tabs = new TabBar(this);
 
@@ -67,14 +62,10 @@ class Editor {
 
     // Run main.wren
     html.querySelector('#run').onClick.listen((_) {
+      console.clear();
       JsObject vm = context['vm'];
       vm.callMethod("interpret", [module['main'].content]);
-    });
-
-    // Reset VM and console
-    html.querySelector('#reset').onClick.listen((_) {
       context['refreshVM'].apply([]);
-      console.clear();
     });
 
     html.querySelector('#share').onClick.listen((_) {

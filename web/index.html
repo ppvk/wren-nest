@@ -29,6 +29,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
+  <!-- Wren Libraries
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link type="language/wren" module="js" src="modules/js.wren" />
+  <link type="language/wren" module="two" src="modules/two.wren" />
+
 </head>
 <body>
 
@@ -36,7 +41,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <header>
     <div class="container">
-      wren's nest
+      wren nest
     </div>
   </header>
   <div class="container">
@@ -78,9 +83,6 @@ while (!adjectives.isDone) System.print(adjectives.call())</div>
 
         <div id="toolbar">
           <span title="Run on the current VM" class="tool octicon octicon-playback-play" id="run">
-          </span>
-
-          <span title="Reset the VM" class="tool octicon octicon-sync" id="reset">
           </span>
 
           <span title="Create a permalink" class="tool octicon octicon-link u-pull-right" id="share" >
@@ -125,17 +127,40 @@ while (!adjectives.isDone) System.print(adjectives.call())</div>
       MODULES[key] = value;
     };
 
-    vm = new WrenVM;
+    var imp = document.querySelectorAll('[type="language/wren"]');
+    for (var i = imp.length -1 ; i >= 0 ; i--) {
+        if (imp[i].hasAttribute('src')) {
+            var url = imp[i].getAttribute('src');
+            var module = imp[i].getAttribute('module');
+            var file = new XMLHttpRequest();
+            file.onreadystatechange = function() {
+                if (file.readyState === 4) {
+                    if (file.status === 200) {
+                        MODULES[module] = file.responseText;
+                    }
+                };
+            }
+            file.open("GET", url, false);
+            file.send(null);
+        };
+    };
 
     // Overrides the default 'writeFn', printing to the body instead of the console.
-    vm.writeFn = function(string) {
+    WrenVM.prototype.writeFn = function(string) {
       transmit("console" , string);
     }
 
+    // Overrides the default 'errorFn', printing to the body instead of the console.
+    WrenVM.prototype.errorFn = function(source_module, line, message) {
+      transmit("console" , message + " | " + source_module + ":" + line);
+    }
+
     // Overrides the 'loadModuleFn' so that the VM looks for modules in the MODULES object.
-    vm.loadModuleFn = function(module) {
+    WrenVM.prototype.loadModuleFn = function(module) {
         return MODULES[module];
     };
+
+    vm = new WrenVM();
 
     var refreshVM = function() {
       vm.freeVM();
