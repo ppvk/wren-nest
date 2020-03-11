@@ -1,5 +1,5 @@
 # the Wren nest
-wren-nest is a web application written (mostly) in Dart, for running and sharing snippets of [wren](http://munificent.github.io/wren/) code.
+wren-nest is a web application written (mostly) in Dart, for running and sharing snippets of [wren](http://wren.io) code.
 
 Under the hood, wren-nest uses [wrenjs](https://github.com/ppvk/wrenjs). This means you have built in access to the JS module.
 Documentation for the JS module can be found [here](https://github.com/ppvk/wrenjs).
